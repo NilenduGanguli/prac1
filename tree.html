@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Directory Structure</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    margin: 0;
+    padding: 20px;
+  }
+  ul {
+    list-style-type: none;
+    padding-left: 20px;
+  }
+  .file {
+    padding-left: 20px;
+    color: #666;
+  }
+</style>
+</head>
+<body>
+<pre id="directory"></pre>
+<script>
+  // JSON representing the directory structure
+  const directoryJSON = {
+    "zip_payload.zip": {
+        "doc6.pdf": {},
+        "zip1": {
+            "doc1.pdf": {},
+            "zip2.zip": {
+                "doc2.pdf": {},
+                "zip3.zip": {
+                    "doc3.pdf": {}
+                }
+            }
+        }
+  }};
+
+  // Function to generate HTML for directory structure
+  function generateDirectoryHTML(directory, element, prefix = '') {
+    const keys = Object.keys(directory);
+    keys.forEach((key, index) => {
+      const isLast = index === keys.length - 1;
+      const newPrefix = prefix + (isLast ? '   ' : '|  ');
+      element.textContent += prefix + (isLast ? '└── ' : '├── ') + key + '\n';
+      if (Object.keys(directory[key]).length > 0) {
+        generateDirectoryHTML(directory[key], element, newPrefix);
+      }
+    });
+  }
+
+  // Generate directory structure and append to the page
+  const directoryElement = document.getElementById('directory');
+  generateDirectoryHTML(directoryJSON, directoryElement);
+</script>
+</body>
+</html>
