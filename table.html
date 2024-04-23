@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON Table</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: #47bef5;
+    }
+    /* Apply background colors to alternate rows */
+    tr:nth-child(odd) {
+        background-color: #bebebe;
+    }
+    tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+</style>
+</head>
+<body>
+
+<table id="jsonTable">
+    <!-- Table will be generated here -->
+</table>
+
+<script>
+    // JSON data
+    var jsonData = [
+        ["entity", "ancestor", "has_zip"],
+        ["/zip_top.zip", "", "/zip_top.zip/zip_flat.zip"],
+        ["/zip_top.zip/doc1.pdf", "/zip_top.zip", ""],
+        ["/zip_top.zip/doc2.pdf", "/zip_top.zip", ""],
+        ["/zip_top.zip/doc3.pdf", "/zip_top.zip", ""],
+        ["/zip_top.zip/doc4.pdf", "/zip_top.zip", ""],
+        ["/zip_top.zip/doc5.pdf", "/zip_top.zip", ""],
+        ["/zip_top.zip/doc6.pdf", "/zip_top.zip", ""],
+        ["/zip_top.zip/zip_flat.zip", "/zip_top.zip", ""],
+        ["/zip_top.zip/zip_flat.zip/doc1.pdf", "/zip_top.zip/zip_flat.zip", ""],
+        ["/zip_top.zip/zip_flat.zip/doc2.pdf", "/zip_top.zip/zip_flat.zip", ""],
+        ["/zip_top.zip/zip_flat.zip/doc3.pdf", "/zip_top.zip/zip_flat.zip", ""],
+        ["/zip_top.zip/zip_flat.zip/doc4.pdf", "/zip_top.zip/zip_flat.zip", ""],
+        ["/zip_top.zip/zip_flat.zip/doc5.pdf", "/zip_top.zip/zip_flat.zip", ""],
+        ["/zip_top.zip/zip_flat.zip/doc6.pdf", "/zip_top.zip/zip_flat.zip", ""]
+    ];
+
+    // Generate table
+    var table = document.getElementById('jsonTable');
+    var headerRow = table.insertRow();
+    jsonData[0].forEach(function(cellData) {
+        var headerCell = document.createElement('th');
+        headerCell.textContent = cellData;
+        headerRow.appendChild(headerCell);
+    });
+
+    for (var i = 1; i < jsonData.length; i++) {
+        var row = table.insertRow();
+        jsonData[i].forEach(function(cellData) {
+            var cell = row.insertCell();
+            cell.textContent = cellData;
+        });
+    }
+</script>
+
+</body>
+</html>
