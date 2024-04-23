@@ -58,13 +58,11 @@ def traverse_directory(directory: str,parent_dir:str, flatten_directory :str, di
             extract_zip(directory, item_path_extracted)
             directory = item_path_extracted
     if os.path.isdir(directory):
-        if os.path.basename(directory) in dir_struct_map :
-            dir_struct_map[os.path.basename(directory)] += 1
-        else :
-            dir_struct_map[os.path.basename(directory)] = 1
+        if os.path.basename(directory) not in dir_struct_map :
+            dir_struct_map[os.path.basename(directory)] = 0
         for item in os.listdir(directory):
             item_path = os.path.join(directory, item)
-            # print(item_path)
+            # print(dir_struct_map)
             item_rel_path_split = os.path.join(directory,item).split(parent_dir)[-1].split(os.path.sep)
             item_rel_path_list = []
             for rel_path in item_rel_path_split:
@@ -75,11 +73,13 @@ def traverse_directory(directory: str,parent_dir:str, flatten_directory :str, di
             item_rel_path = sep.join(item_rel_path_list)
             item_parent_parts = directory.split(parent_dir)[-1].split(os.path.sep)[1:]
             item_new_name = ""
+            if "." in item and not item.endswith(".zip"):
+                dir_struct_map[os.path.basename(directory)] += 1
             for parent in item_parent_parts:
                 temp_index = str(dir_struct_map[parent]) if dir_struct_map[parent] > 9 else "".join(["0",str(dir_struct_map[parent])])
                 item_new_name = item_new_name + temp_index + "_"
-            item_new_name = item_new_name + item
-            if "." in item_new_name and not item_new_name.endswith(".zip"):
+            if "." in item and not item.endswith(".zip"):
+                item_new_name = item_new_name + item
                 flat_file_map[item_rel_path] = item_new_name
             try:
                 if not os.path.isdir(item_path) and not item_path.endswith(".zip") : 
