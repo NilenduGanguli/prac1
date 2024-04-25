@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Table with Thumbnails and Nested Rows</title>
+<style>
+    .status {
+            display: flex;
+            justify-content: space-between;
+            width: 30%;
+        }
+
+        .status div {
+            flex: 1;
+            text-align: center;
+            font-weight: bold;
+            padding: 4px;
+        }
+
+        .status .red {
+            background-color: red;
+            color: white;
+        }
+
+        .status .amber {
+            background-color: orange;
+            color: white;
+        }
+
+        .status .green {
+            background-color: green;
+            color: white;
+        }
+    table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    .scrollable {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    .sub-sub-row {
+        padding-left: 40px;
+        border-right: 1px solid #dddddd;
+    }
+    .button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            margin-left: 10px;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .button-container button.save {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .button-container button.cancel {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-container button.cancel:hover {
+            background-color: #c82333;
+        }
+</style>
+</head>
+<body>
+    <h1 style="font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 186);">Detailed Report Summary</h1>
+    <br>
+    <br>
+    <div class="status">
+        <div class="red">red</div>
+        <div class="amber">amber</div>
+        <div class="green">class</div>
+    </div>
+    <div class="status">
+        <div class="red">5</div>
+        <div class="amber">2</div>
+        <div class="green">9</div>
+    </div>
+    <br><br><br>
+    <strong>
+    Name:
+    </strong>
+    <span style="margin-left: 1em;">
+        W********C
+    </span>
+    <span style="margin-left: 6em;"></span>
+    <strong>
+    DoB/DoL:
+    </strong>
+    <span style="margin-left: 1em;">
+        N/A
+    </span>
+    <span style="margin-left: 6em;"></span>
+    <strong>
+    Citizenship/Foprmation:
+    </strong>
+    <span style="margin-left: 1em;">
+        JE
+    </span>
+    <span style="margin-left: 6em;"></span>
+    <strong>
+    Docile/Incorpration:
+    </strong>
+    <span style="margin-left: 1em;">
+        JE
+    </span>
+    <span style="margin-left: 6em;"></span>
+<br>
+<br>
+<br>
+<table>
+    <thead>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 1</th>
+            <th>Column 1</th>
+            <th>Column 2 (Thumbnail)</th>
+            <th colspan="2">Column 3 (Nested Rows)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="3">Word</td>
+            <td rowspan="3">Paragraph</td>
+            <td rowspan="3">Paragraph</td>
+            <td rowspan="3"><a href="pdf.png" download target="_blank"><img src="pdf.png" alt="Thumbnail" width="50"></a></td>
+            <!-- <td rowspan="3">
+                <div class="scrollable">
+                    <div class="sub-row">Sub-row 1</div>
+                    <div class="sub-row">Sub-row 2</div>
+                    <div class="sub-row">Sub-row 3</div>
+                </div>
+            </td> -->
+            <td rowspan="1">Paragraph</td>
+            <td>
+                <div class="scrollable">
+                    <div class="sub-sub-row">Sub-sub-row 1</div>
+                    <div class="sub-sub-row">Sub-sub-row 2</div>
+                    <div class="sub-sub-row">Sub-sub-row 3</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="1">Paragraph</td>
+            <td>
+                <div class="scrollable">
+                    <div class="sub-sub-row">Sub-sub-row 1</div>
+                    <div class="sub-sub-row">Sub-sub-row 2</div>
+                    <div class="sub-sub-row">Sub-sub-row 3</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="1">Paragraph</td>
+            <td>
+                <div class="scrollable">
+                    <div class="sub-sub-row">Sub-sub-row 1</div>
+                    <div class="sub-sub-row">Sub-sub-row 2</div>
+                    <div class="sub-sub-row">Sub-sub-row 3</div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="button-container">
+    <button class="save" onclick="saveAllRowsAsExcel()">Save Report</button>
+    <button class="cancel" onclick="cancel()">Cancel</button>
+</div>
+<script>
+     // Function to save all rows as Excel
+     function saveAllRowsAsExcel() {
+            let rows = document.querySelectorAll('tbody tr');
+            if (rows.length === 0) {
+                alert("No rows to save.");
+                return;
+            }
+
+            // Prepare data for Excel export
+            let data = [];
+            rows.forEach(function(row) {
+                let rowData = [];
+                row.querySelectorAll('td').forEach(function(cell) {
+                    rowData.push(cell.textContent.trim());
+                });
+                data.push(rowData);
+            });
+
+            // Insert header row
+            let headerRow = [];
+            document.querySelectorAll('thead th').forEach(function(header) {
+                headerRow.push(header.textContent.trim());
+            });
+            data.unshift(headerRow);
+
+            // Create a CSV string
+            let csvContent = "data:text/csv;charset=utf-8,";
+            data.forEach(function(row) {
+                let rowString = row.map(cell => `"${cell}"`).join(",");
+                csvContent += rowString + "\r\n";
+            });
+
+            // Create a Blob object
+            let blob = new Blob([csvContent], { type: 'text/csv' });
+
+            // Create a temporary URL
+            let url = URL.createObjectURL(blob);
+
+            // Create a temporary link element
+            let link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", "all_rows.csv");
+
+            // Append the link to the document body
+            document.body.appendChild(link);
+
+            // Trigger the download
+            link.click();
+
+            // Clean up
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        // Function to cancel
+        function cancel() {
+            // Add cancellation logic here
+            console.log("Cancelled");
+        }
+</script>
+</body>
+</html>
