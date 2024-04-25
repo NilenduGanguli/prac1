@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table with Various Columns</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .scrollable {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .status {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .status div {
+            flex: 1;
+            text-align: center;
+            font-weight: bold;
+            padding: 4px;
+        }
+
+        .status .red {
+            background-color: red;
+            color: white;
+        }
+
+        .status .amber {
+            background-color: orange;
+            color: white;
+        }
+
+        .status .green {
+            background-color: green;
+            color: white;
+        }
+        .menu-icon {
+            background-color: lightblue;
+            width: 30px; /* Adjust width and height as needed */
+            height: 30px; /* Adjust width and height as needed */
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .menu-icon div {
+            width: 50%;
+            height: 3px; /* Thickness of dashes */
+            background-color: rgb(255, 255, 255); /* Color of dashes */
+        }
+        .nowrap {
+            white-space: nowrap;
+        }
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            margin-left: 10px;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .button-container button.save {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .button-container button.cancel {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-container button.cancel:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-family: Arial, Helvetica, sans-serif; color: rgb(0, 0, 186);">AML WatchLists, SPF & Sanctions</h1>
+                <strong>
+                Name:
+                </strong>
+                <span style="margin-left: 1em;">
+                    W********C
+                </span>
+                <span style="margin-left: 6em;"></span>
+                <strong>
+                DoB/DoL:
+                </strong>
+                <span style="margin-left: 1em;">
+                    N/A
+                </span>
+                <span style="margin-left: 6em;"></span>
+                <strong>
+                Citizenship/Foprmation:
+                </strong>
+                <span style="margin-left: 1em;">
+                    JE
+                </span>
+                <span style="margin-left: 6em;"></span>
+                <strong>
+                Docile/Incorpration:
+                </strong>
+                <span style="margin-left: 1em;">
+                    JE
+                </span>
+                <span style="margin-left: 6em;"></span>
+    <br>
+    <br>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="selectAll"></th>
+                <th>Hit #</th>
+                <th>Hit Name</th>
+                <th>Redispositioned</th>
+                <th>Nationality</th>
+                <th>Location</th>
+                <th>Match Type</th>
+                <th>PDF</th>
+                <th class="nowrap">Date</th>
+                <th>
+                    <div class="status">
+                    <div class="red">Red</div>
+                    <div class="amber">Amber</div>
+                    <div class="green">Green</div>
+                    </div>
+                </th>
+                <th>Detailed Report</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" class="selectRecord"></td>
+                <td>Apple</td>
+                <td>Orange</td>
+                <td>Banana</td>
+                <td>Pineapple</td>
+                <td>Grape</td>
+                <td class="scrollable">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non nulla vitae neque interdum vestibulum.</td>
+                <td><a href="pdf.png" download target="_blank"><img src="pdf.png" alt="Thumbnail" width="50"></a></a></td>
+                <td class="nowrap">2024-04-25</td>
+                <td>
+                    <div class="status">
+                        <div class="red">5</div>
+                        <div class="amber">2</div>
+                        <div class="green">9</div>
+                    </div>
+                </td>
+                <td>
+                    <button class="menu-icon" onclick="showPopup()">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="selectRecord"></td>
+                <td>Dog</td>
+                <td>Cat</td>
+                <td>Rabbit</td>
+                <td>Hamster</td>
+                <td>Fish</td>
+                <td class="scrollable">Integer ut nisi et dui iaculis vehicula. Fusce ut mi felis. Aliquam vel velit id magna malesuada luctus.</td>
+                <td><a href="pdf.png" download target="_blank"><img src="pdf.png" alt="Thumbnail" width="50"></a></td>
+                <td class="nowrap">2024-04-26</td>
+                <td>
+                    <div class="status">
+                        <div class="red">2</div>
+                        <div class="amber">5</div>
+                        <div class="green">8</div>
+                    </div>
+                </td>
+                <td>
+                    <button class="menu-icon" onclick="showPopup()">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </button>
+                </td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+    <div class="button-container">
+        <button class="save" onclick="saveSelectedRowsAsExcel()">Save Selected Rows</button>
+        <button class="cancel" onclick="cancel()">Cancel</button>
+    </div>
+    <script>
+         // Function to select all records
+         document.getElementById('selectAll').addEventListener('change', function() {
+            let checkboxes = document.querySelectorAll('.selectRecord');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.checked = this.checked;
+            }, this);
+        });
+
+        // Function to download file from API
+        function downloadFile() {
+            // Code to fetch file from API and initiate download
+            // Example:
+            // fetch('api/file-url')
+            //     .then(response => response.blob())
+            //     .then(blob => {
+            //         const url = window.URL.createObjectURL(blob);
+            //         const a = document.createElement('a');
+            //         a.href = url;
+            //         a.download = 'file-name';
+            //         document.body.appendChild(a);
+            //         a.click();
+            //         window.URL.revokeObjectURL(url);
+            //     });
+        }
+        // Function to save selected rows as Excel
+        function saveSelectedRowsAsExcel() {
+            let selectedRows = document.querySelectorAll('.selectRecord:checked');
+            if (selectedRows.length === 0) {
+                alert("No rows selected.");
+                return;
+            }
+
+            // Prepare data for Excel export
+            let data = [];
+            selectedRows.forEach(function(row) {
+                let rowData = [];
+                rowData.push(row.parentElement.nextElementSibling.textContent); // Hit #
+                rowData.push(row.parentElement.nextElementSibling.nextElementSibling.textContent); // Hit Name
+                rowData.push(row.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.textContent); // Redispositioned
+                rowData.push(row.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent); // Nationality
+                rowData.push(row.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent); // Location
+                rowData.push(row.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent); // Match Type
+                rowData.push(row.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML); // PDF
+                rowData.push(row.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent); // Date
+                rowData.push(row.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.textContent); // Status
+                data.push(rowData);
+            });
+            let headerRow = [];
+            document.querySelectorAll('thead th').forEach(function(header) {
+                headerRow.push(header.textContent.trim());
+            });
+            data.unshift(headerRow);
+            // Create a CSV string
+            let csvContent = "data:text/csv;charset=utf-8,";
+            data.forEach(function(row) {
+                let rowString = row.map(cell => `"${cell}"`).join(",");
+                csvContent += rowString + "\r\n";
+            });
+
+            // Create a Blob object
+            let blob = new Blob([csvContent], { type: 'text/csv' });
+
+            // Create a temporary URL
+            let url = URL.createObjectURL(blob);
+
+            // Create a temporary link element
+            let link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", "selected_rows.csv");
+
+            // Append the link to the document body
+            document.body.appendChild(link);
+
+            // Trigger the download
+            link.click();
+
+            // Clean up
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+        // Function to cancel
+        function cancel() {
+            // Add cancellation logic here
+            console.log("Cancelled");
+        }
+
+        // Function to show popup
+        function showPopup() {
+    const popup = window.open('', 'Popup', 'width=800,height=600');
+
+    // Fetch the HTML file using the local server URL
+    fetch('http://localhost:8000/pop.html')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch HTML content');
+            }
+            return response.text();
+        })
+        .then(htmlContent => {
+            // Write the fetched HTML content into the popup document
+            popup.document.write(htmlContent);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+    </script>
+</body>
+</html>
